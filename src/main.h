@@ -37,7 +37,7 @@ static const int64 MAX_MINT_PROOF_OF_STAKE = .01 * MAX_MINT_PROOF_OF_WORK;	//1% 
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 static const unsigned int MAX_TX_COMMENT_LEN = 140; //140 character (Twitter) limitation
 
-static const unsigned int POW_CUTOFF_BLOCK = 20000;
+static const int POW_CUTOFF_BLOCK = 20000;
 
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 // Threshold for nLockTime: below this value it is interpreted as block number, otherwise as UNIX timestamp.

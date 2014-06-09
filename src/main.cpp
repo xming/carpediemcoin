@@ -17,7 +17,7 @@
 using namespace std;
 using namespace boost;
 
-const bool IsCalculatingGenesisBlockHash = true;
+const bool IsCalculatingGenesisBlockHash = false;
 
 //
 // Global state
@@ -42,7 +42,7 @@ static CBigNum bnProofOfStakeHardLimit(~uint256(0) >> 30); // disabled temporari
 static CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 static CBigNum bnProofOfStakeLimitTestNet(~uint256(0) >> 20);
 
-unsigned int nStakeMinAge = 8 * 60 * 60; // 8 hours for your DIEM to be able to stake
+unsigned int nStakeMinAge = 8 * 24 * 60 * 60; // 8 Days for your DIEM to be able to stake
 unsigned int nStakeMaxAge = 60 * 60 * 24 * 88; // 88 days
 unsigned int nStakeTargetSpacing = 120; // 120 seconds block spacing
 const int64 nChainStartTime = 1400098653; 
@@ -69,7 +69,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "carpediemcoin Signed Message:\n";
+const string strMessageMagic = "CarpeDiemCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
