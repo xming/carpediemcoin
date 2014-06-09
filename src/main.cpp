@@ -43,7 +43,7 @@ static CBigNum bnProofOfWorkLimitTestNet(~uint256(0) >> 16);
 static CBigNum bnProofOfStakeLimitTestNet(~uint256(0) >> 20);
 
 unsigned int nStakeMinAge = 8 * 60 * 60; // 8 hours for your DIEM to be able to stake
-unsigned int nStakeMaxAge = -1; // unlimited
+unsigned int nStakeMaxAge = 60 * 60 * 24 * 88; // 88 days
 unsigned int nStakeTargetSpacing = 120; // 120 seconds block spacing
 const int64 nChainStartTime = 1400098653; 
 const int64 nTestNetStartTime = nChainStartTime; // 14th may
@@ -2033,8 +2033,6 @@ bool CBlock::AddToBlockIndex(unsigned int nFile, unsigned int nBlockPos)
     uiInterface.NotifyBlocksChanged();
     return true;
 }
-
-
 
 
 bool CBlock::CheckBlock(bool fCheckPOW, bool fCheckMerkleRoot) const
