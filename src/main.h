@@ -33,7 +33,7 @@ static const int64 MIN_TX_FEE = 0.001 * COIN;
 static const int64 MIN_RELAY_TX_FEE = MIN_TX_FEE;
 static const int64 MAX_MONEY = 40000000000 * COIN; //total of 20 billion coins
 static const int64 MAX_MINT_PROOF_OF_WORK = 21634000000 * COIN;	
-static const int64 MAX_MINT_PROOF_OF_STAKE = .01 * MAX_MINT_PROOF_OF_WORK;	//1% annual stake
+static const int64 MAX_MINT_PROOF_OF_STAKE = .01 * COIN;	//1% annual stake
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 static const unsigned int MAX_TX_COMMENT_LEN = 140; //140 character (Twitter) limitation
 
