@@ -1,5 +1,5 @@
-#ifndef BOUNTYCOINFIELD_H
-#define BOUNTYCOINFIELD_H
+#ifndef CARPEDIEMCOINFIELD_H
+#define CARPEDIEMCOINFIELD_H
 
 #include <QWidget>
 
@@ -57,4 +57,4 @@ private slots:
 };
 
 
-#endif // BOUNTYCOINFIELD_H
+#endif // CARPEDIEMCOINFIELD_H

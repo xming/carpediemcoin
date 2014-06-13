@@ -2,8 +2,8 @@
 // Copyright (c) 2013  The carpediemcoin developer
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_UINT256_H
-#define BOUNTYCOIN_UINT256_H
+#ifndef CARPEDIEMCOIN_UINT256_H
+#define CARPEDIEMCOIN_UINT256_H
 
 #include <limits.h>
 #include <stdio.h>

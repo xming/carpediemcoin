@@ -2,8 +2,8 @@
 // Copyright (c) 2013  The carpediemcoin developer
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_ALLOCATORS_H
-#define BOUNTYCOIN_ALLOCATORS_H
+#ifndef CARPEDIEMCOIN_ALLOCATORS_H
+#define CARPEDIEMCOIN_ALLOCATORS_H
 
 #include <string.h>
 #include <string>

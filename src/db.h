@@ -2,8 +2,8 @@
 // Copyright (c) 2013  The carpediemcoin developer
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_DB_H
-#define BOUNTYCOIN_DB_H
+#ifndef CARPEDIEMCOIN_DB_H
+#define CARPEDIEMCOIN_DB_H
 
 #include "main.h"
 
@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include <db_cxx.h>
+#include <db4.8/db_cxx.h>
 
 class CAddress;
 class CAddrMan;
@@ -363,4 +363,4 @@ public:
     bool Read(CAddrMan& addr);
 };
 
-#endif // BOUNTYCOIN_DB_H
+#endif // CARPEDIEMCOIN_DB_H
