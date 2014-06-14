@@ -2,8 +2,8 @@
 // Copyright (c) 2013  The carpediemcoin developer
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_KEYSTORE_H
-#define BOUNTYCOIN_KEYSTORE_H
+#ifndef CARPEDIEMCOIN_KEYSTORE_H
+#define CARPEDIEMCOIN_KEYSTORE_H
 
 #include "crypter.h"
 #include "sync.h"

@@ -2,8 +2,8 @@
 // Copyright (c) 2013  The carpediemcoin developer
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_MAIN_H
-#define BOUNTYCOIN_MAIN_H
+#ifndef CARPEDIEMCOIN_MAIN_H
+#define CARPEDIEMCOIN_MAIN_H
 
 #include "bignum.h"
 #include "sync.h"

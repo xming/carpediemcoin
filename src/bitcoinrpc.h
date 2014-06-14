@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef _BOUNTYCOINRPC_H_
-#define _BOUNTYCOINRPC_H_ 1
+#ifndef _CARPEDIEMCOINRPC_H_
+#define _CARPEDIEMCOINRPC_H_ 1
 
 #include <string>
 #include <list>

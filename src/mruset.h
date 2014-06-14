@@ -1,8 +1,8 @@
 // Copyright (c) 2012 The carpediemcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BOUNTYCOIN_MRUSET_H
-#define BOUNTYCOIN_MRUSET_H
+#ifndef CARPEDIEMCOIN_MRUSET_H
+#define CARPEDIEMCOIN_MRUSET_H
 
 #include <set>
 #include <deque>

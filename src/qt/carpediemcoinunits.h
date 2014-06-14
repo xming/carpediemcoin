@@ -1,5 +1,5 @@
-#ifndef BOUNTYCOINUNITS_H
-#define BOUNTYCOINUNITS_H
+#ifndef CARPEDIEMCOINUNITS_H
+#define CARPEDIEMCOINUNITS_H
 
 #include <QString>
 #include <QAbstractListModel>
@@ -63,4 +63,4 @@ private:
 };
 typedef carpediemcoinUnits::Unit carpediemcoinUnit;
 
-#endif // BOUNTYCOINUNITS_H
+#endif // CARPEDIEMCOINUNITS_H
