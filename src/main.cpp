@@ -17,7 +17,7 @@
 using namespace std;
 using namespace boost;
 
-const bool IsCalculatingGenesisBlockHash = false;
+const bool IsCalculatingGenesisBlockHash = true;
 
 //
 // Global state
@@ -2134,7 +2134,7 @@ bool CBlock::AcceptBlock()
     int nHeight = pindexPrev->nHeight+1;
 
     //Pure PoS check
-    if ((IsProofOfWork() && nHeight > POW_CUTOFF_BLOCK) || (fTestNet && nHeight > 1))
+    if ((IsProofOfWork() && nHeight > POW_CUTOFF_BLOCK) || (fTestNet && nHeight > 1500))
          return DoS(100, error("AcceptBlock() : No PoW block allowed anymore (height = %d)", nHeight));
 
     // Check proof-of-work or proof-of-stake
@@ -2168,7 +2168,7 @@ bool CBlock::AcceptBlock()
     }
 
     // Reject block.nVersion < 3 blocks since 95% threshold on mainNet and always on testNet:
-    if (nVersion < 3 && ((!fTestNet && nHeight > 90) || (fTestNet && nHeight > 0)))
+    if (nVersion < 3 )
         return error("CheckBlock() : rejected nVersion < 3 block");
 
     // Enforce rule that the coinbase starts with serialized block height
@@ -2518,10 +2518,11 @@ bool LoadBlockIndex(bool fAllowNew)
 
         bnProofOfStakeLimit = bnProofOfStakeLimitTestNet; // 0x00000fff PoS base target is fixed in testnet
         bnProofOfWorkLimit = bnProofOfWorkLimitTestNet; // 0x0000ffff PoW base target is fixed in testnet
-        nStakeMinAge = 2 * 60 * 60; // test net min age is 2 hours
-        nModifierInterval = 20 * 60; // test modifier interval is 20 minutes
+        nStakeMinAge = 30 * 60; // test net min age is 30 Minutes
+        nStakeMaxAge = 10 * 24 * 60 * 60; // scaled
+        nModifierInterval = 10 * 60; // test modifier interval is 10 minutes
         nCoinbaseMaturity = 10; // test maturity is 30 blocks
-        nStakeTargetSpacing = 3 * 60; // test block spacing is 3 minutes
+        nStakeTargetSpacing = 120; // test block spacing is 2 minutes
     }
 
     //
