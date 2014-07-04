@@ -40,6 +40,7 @@
         <file alias="filesave">res/icons/filesave.png</file>
         <file alias="qrcode">res/icons/qrcode.png</file>
         <file alias="debugwindow">res/icons/debugwindow.png</file>
+        <file alias="minting">res/icons/mining.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="about">res/images/about.png</file>
@@ -51,51 +52,5 @@
     </qresource>
     <qresource prefix="/translations">
         <file alias="en">locale/carpediemcoin_en.qm</file>
-        <file alias="ru">locale/carpediemcoin_ru.qm</file>
-        <file alias="zh_CN">locale/carpediemcoin_zh_CN.qm</file>
-        <file alias="af_Za">locale/carpediemcoin_af_ZA.qm</file>
-        <file alias="ar">locale/carpediemcoin_ar.qm</file>
-        <file alias="bg">locale/carpediemcoin_bg.qm</file>
-        <file alias="bs">locale/carpediemcoin_bs.qm</file>
-        <file alias="ca">locale/carpediemcoin_ca.qm</file>
-        <file alias="ca_ES">locale/carpediemcoin_ca_ES.qm</file>
-        <file alias="cs">locale/carpediemcoin_cs.qm</file>
-        <file alias="cy">locale/carpediemcoin_cy.qm</file>
-        <file alias="da">locale/carpediemcoin_da.qm</file>
-        <file alias="de">locale/carpediemcoin_de.qm</file>
-        <file alias="el_GR">locale/carpediemcoin_el_GR.qm</file>
-        <file alias="eo">locale/carpediemcoin_eo.qm</file>
-        <file alias="es">locale/carpediemcoin_es.qm</file>
-        <file alias="es_CL">locale/carpediemcoin_es_CL.qm</file>
-        <file alias="et">locale/carpediemcoin_et.qm</file>
-        <file alias="eu_ES">locale/carpediemcoin_eu_ES.qm</file>
-        <file alias="fa">locale/carpediemcoin_fa.qm</file>
-        <file alias="da_IR">locale/carpediemcoin_fa_IR.qm</file>
-        <file alias="fi">locale/carpediemcoin_fi.qm</file>
-        <file alias="fr">locale/carpediemcoin_fr.qm</file>
-        <file alias="fr_CA">locale/carpediemcoin_fr_CA.qm</file>
-        <file alias="gu_IN">locale/carpediemcoin_gu_IN.qm</file>
-        <file alias="he">locale/carpediemcoin_he.qm</file>
-        <file alias="hi_IN">locale/carpediemcoin_hi_IN.qm</file>
-        <file alias="hr">locale/carpediemcoin_hr.qm</file>
-        <file alias="hu">locale/carpediemcoin_hu.qm</file>
-        <file alias="it">locale/carpediemcoin_it.qm</file>
-        <file alias="ja">locale/carpediemcoin_ja.qm</file>
-        <file alias="la">locale/carpediemcoin_la.qm</file>
-        <file alias="lt">locale/carpediemcoin_lt.qm</file>
-        <file alias="lv_LV">locale/carpediemcoin_lv_LV.qm</file>
-        <file alias="nb">locale/carpediemcoin_nb.qm</file>
-        <file alias="nl">locale/carpediemcoin_nl.qm</file>
-        <file alias="pl">locale/carpediemcoin_pl.qm</file>
-        <file alias="pt_BR">locale/carpediemcoin_pt_BR.qm</file>
-        <file alias="pt_PT">locale/carpediemcoin_pt_PT.qm</file>
-        <file alias="ro_RO">locale/carpediemcoin_ro_RO.qm</file>
-        <file alias="sk">locale/carpediemcoin_sk.qm</file>
-        <file alias="sr">locale/carpediemcoin_sr.qm</file>
-        <file alias="sv">locale/carpediemcoin_sv.qm</file>
-        <file alias="th_TH">locale/carpediemcoin_th_TH.qm</file>
-        <file alias="tr">locale/carpediemcoin_tr.qm</file>
-        <file alias="uk">locale/carpediemcoin_uk.qm</file>
-        <file alias="zh_TW">locale/carpediemcoin_zh_TW.qm</file>
     </qresource>
 </RCC>

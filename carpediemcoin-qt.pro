@@ -91,8 +91,8 @@ contains(USE_IPV6, -) {
     DEFINES += USE_IPV6=$$USE_IPV6
 }
 
-contains(BOUNTYCOIN_NEED_QT_PLUGINS, 1) {
-    DEFINES += BOUNTYCOIN_NEED_QT_PLUGINS
+contains(CARPEDIEMCOIN_NEED_QT_PLUGINS, 1) {
+    DEFINES += CARPEDIEMCOIN_NEED_QT_PLUGINS
     QTPLUGIN += qcncodecs qjpcodecs qtwcodecs qkrcodecs qtaccessiblewidgets
 }
 
@@ -184,7 +184,8 @@ HEADERS += src/qt/carpediemcoingui.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
-    src/clientversion.h
+    src/clientversion.h \
+    src/coincontrol.h
 
 SOURCES += src/qt/carpediemcoin.cpp src/qt/carpediemcoingui.cpp \
     src/qt/transactiontablemodel.cpp \
@@ -269,14 +270,14 @@ SOURCES += src/qt/qrcodedialog.cpp
 FORMS += src/qt/forms/qrcodedialog.ui
 }
 
-contains(BOUNTYCOIN_QT_TEST, 1) {
+contains(CARPEDIEMCOIN_QT_TEST, 1) {
 SOURCES += src/qt/test/test_main.cpp \
     src/qt/test/uritests.cpp
 HEADERS += src/qt/test/uritests.h
 DEPENDPATH += src/qt/test
 QT += testlib
 TARGET = carpediemcoin-qt_test
-DEFINES += BOUNTYCOIN_QT_TEST
+DEFINES += CARPEDIEMCOIN_QT_TEST
 }
 
 CODECFORTR = UTF-8

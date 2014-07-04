@@ -2,6 +2,7 @@
 #define TRANSACTIONVIEW_H
 
 #include <QWidget>
+#include <QtGui>
 
 class WalletModel;
 class TransactionFilterProxy;
@@ -56,6 +57,12 @@ private:
     QDateTimeEdit *dateTo;
 
     QWidget *createDateRangeWidget();
+    void paintEvent(QPaintEvent *pe) {
+      QStyleOption o;
+      o.initFrom(this);
+      QPainter p(this);
+      style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+    }
 
 private slots:
     void contextualMenu(const QPoint &);

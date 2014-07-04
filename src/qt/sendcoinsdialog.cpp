@@ -28,7 +28,8 @@ SendCoinsDialog::SendCoinsDialog(QWidget *parent) :
 #endif
 #if QT_VERSION >= 0x040700
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->editTxComment->setPlaceholderText(tr("Enter a transaction comment (MAX 256 Characters) (Note: This information is public)"));
+    ui->editTxComment->setPlaceholderText(tr("Enter a transaction comment (MAX 140 Characters) (Note: This information is public)"));
+
 #endif
 
     addEntry();
@@ -56,6 +57,7 @@ void SendCoinsDialog::setModel(WalletModel *model)
         setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance());
         connect(model, SIGNAL(balanceChanged(qint64, qint64, qint64, qint64)), this, SLOT(setBalance(qint64, qint64, qint64, qint64)));
         connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+
     }
 }
 
@@ -124,6 +126,7 @@ void SendCoinsDialog::on_sendButton_clicked()
     }
 
     WalletModel::SendCoinsReturn sendstatus = model->sendCoins(txcomment, recipients);
+
     switch(sendstatus.status)
     {
     case WalletModel::InvalidAddress:

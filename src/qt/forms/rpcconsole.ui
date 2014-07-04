@@ -13,9 +13,15 @@
   <property name="windowTitle">
    <string>carpediemcoin - Debug window</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} QDialog {background-color: #6C6C6C; color: #FFFFD3 } QLabel {color: #FFFFD3} QTabWidget {background-color: #E5990C; color: #FFFFD3; }  QTabBar::tab {  background: #6C6C6C; border: 1px outset #E5990C; border-bottom-width: 0px; border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 75px; padding: 3px; color: #FFFFD3 }</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -324,6 +330,9 @@
          <property name="toolTip">
           <string>Open the carpediemcoin debug log file from the current data directory. This can take a few seconds for large log files.</string>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>&amp;Open</string>
          </property>
@@ -349,6 +358,9 @@
         <widget class="QPushButton" name="showCLOptionsButton">
          <property name="toolTip">
           <string>Show the carpediemcoin-Qt help message to get a list with possible carpediemcoin command-line options.</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>&amp;Show</string>
@@ -389,6 +401,9 @@
            <height>100</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
@@ -413,7 +428,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="lineEdit">
+           <property name="styleSheet">
+            <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="clearButton">
@@ -425,6 +444,9 @@
            </property>
            <property name="toolTip">
             <string>Clear console</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
            </property>
            <property name="text">
             <string/>

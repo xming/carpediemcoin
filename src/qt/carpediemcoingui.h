@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
+#include <QWidget>
+#include <QStyleOption>
+#include <QtGui>
 
 class TransactionTableModel;
 class ClientModel;
@@ -53,6 +56,14 @@ protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
 
+
+    void paintEvent(QPaintEvent *pe) {
+      QStyleOption o;
+      o.initFrom(this);
+      QPainter p(this);
+      style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+    }
+
 private:
     ClientModel *clientModel;
     WalletModel *walletModel;
@@ -88,6 +99,7 @@ private:
     QAction *encryptWalletAction;
     QAction *backupWalletAction;
     QAction *changePassphraseAction;
+    QAction *lockWalletToggleAction;
     QAction *aboutQtAction;
     QAction *openRPCConsoleAction;
 
@@ -98,6 +110,7 @@ private:
 
     QMovie *syncIconMovie;
 
+
     /** Create the main UI actions. */
     void createActions();
     /** Create the menu bar and sub-menus. */
@@ -106,6 +119,7 @@ private:
     void createToolBars();
     /** Create system tray (notification) icon */
     void createTrayIcon();
+
 
 public slots:
     /** Set number of connections shown in the UI */
@@ -152,6 +166,7 @@ private slots:
     void optionsClicked();
     /** Show about dialog */
     void aboutClicked();
+
 #ifndef Q_OS_MAC
     /** Handle tray icon clicked */
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
@@ -167,6 +182,8 @@ private slots:
     void backupWallet();
     /** Change encrypted wallet passphrase */
     void changePassphrase();
+    /** Toggle unlocking wallet temporarily */
+    void lockWalletToggle();
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
 

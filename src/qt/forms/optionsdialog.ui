@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
-    <height>380</height>
+    <width>536</width>
+    <height>302</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Options</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} QDialog {background-color: #6C6C6C; color: #FFFFD3 } QLabel {color: #FFFFD3} QTabWidget {background-color: #E5990C; color: #FFFFD3} QTabBar::tab {  background: #6C6C6C; border: 1px outset #E5990C; border-bottom-width: 0px; border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 8px; padding: 3px; color: #FFFFD3 }</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -19,11 +22,20 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="tabPosition">
       <enum>QTabWidget::North</enum>
      </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tabMain">
       <attribute name="title">
@@ -59,7 +71,11 @@
           </widget>
          </item>
          <item>
-          <widget class="carpediemcoinAmountField" name="transactionFee"/>
+          <widget class="carpediemcoinAmountField" name="transactionFee">
+           <property name="styleSheet">
+            <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_Main">
@@ -188,6 +204,9 @@
            <property name="toolTip">
             <string>Port of the proxy (e.g. 9050)</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
           </widget>
          </item>
          <item>
@@ -207,6 +226,9 @@
           <widget class="QValueComboBox" name="socksVersion">
            <property name="toolTip">
             <string>SOCKS version of the proxy (e.g. 5)</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
            </property>
           </widget>
          </item>
@@ -305,6 +327,9 @@
            <property name="toolTip">
             <string>The user interface language can be set here. This setting will take effect after restarting carpediemcoin.</string>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QObject { background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -328,6 +353,9 @@
           <widget class="QValueComboBox" name="unit">
            <property name="toolTip">
             <string>Choose the default subdivision unit to show in the interface and when sending coins.</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QObject{ background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
            </property>
           </widget>
          </item>
@@ -362,6 +390,18 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_Buttons">
+     <property name="leftMargin">
+      <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>6</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
      <item>
       <spacer name="horizontalSpacer_1">
        <property name="orientation">
@@ -409,6 +449,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="okButton">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;OK</string>
        </property>
@@ -416,6 +459,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="cancelButton">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;Cancel</string>
        </property>
@@ -426,6 +472,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="applyButton">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;Apply</string>
        </property>
@@ -440,14 +489,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QValidatedLineEdit</class>
-   <extends>QWidget</extends>
-   <header>qvalidatedlineedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>carpediemcoinAmountField</class>
    <extends>QSpinBox</extends>
    <header>carpediemcoinamountfield.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QValidatedLineEdit</class>
+   <extends>QWidget</extends>
+   <header>qvalidatedlineedit.h</header>
   </customwidget>
   <customwidget>
    <class>QValueComboBox</class>

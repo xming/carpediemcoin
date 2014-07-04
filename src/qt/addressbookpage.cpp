@@ -107,6 +107,7 @@ AddressBookPage::~AddressBookPage()
 void AddressBookPage::setModel(AddressTableModel *model)
 {
     this->model = model;
+
     if(!model)
         return;
 
@@ -136,6 +137,7 @@ void AddressBookPage::setModel(AddressTableModel *model)
             AddressTableModel::Address, 320);
     ui->tableView->horizontalHeader()->setResizeMode(
             AddressTableModel::Label, QHeaderView::Stretch);
+
 
     connect(ui->tableView->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
             this, SLOT(selectionChanged()));

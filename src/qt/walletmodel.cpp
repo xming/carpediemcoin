@@ -160,7 +160,6 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QString &txcomment, co
     {
         return DuplicateAddress;
     }
-
     if(total > getBalance())
     {
         return AmountExceedsBalance;

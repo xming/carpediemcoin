@@ -22,6 +22,17 @@ static std::map<int, unsigned int> mapStakeModifierCheckpoints =
     ( 0, 0x0e00670bu )
     ;
 
+// Get time weight
+int64 GetWeight(int64 nIntervalBeginning, int64 nIntervalEnd)
+{
+    // Kernel hash weight starts from 0 at the min age
+    // this change increases active coins participating the hash and helps
+    // to secure the network when proof-of-stake difficulty is low
+
+     //return min(nIntervalEnd - nIntervalBeginning - (IsProtocolMinStakeAgeChange(nIntervalBeginning)?nStakeMinAgeNew:nStakeMinAge), (int64)nStakeMaxAge);
+     return min(nIntervalEnd - nIntervalBeginning - nStakeMinAge, (int64)nStakeMaxAge);
+}
+
 // Get the last stake modifier and its generation time from a given block
 static bool GetLastStakeModifier(const CBlockIndex* pindex, uint64& nStakeModifier, int64& nModifierTime)
 {
@@ -40,7 +51,8 @@ static bool GetLastStakeModifier(const CBlockIndex* pindex, uint64& nStakeModifi
 static int64 GetStakeModifierSelectionIntervalSection(int nSection)
 {
     assert (nSection >= 0 && nSection < 64);
-    return (nModifierInterval * 63 / (63 + ((63 - nSection) * (MODIFIER_INTERVAL_RATIO - 1))));
+    int64 a = nModifierInterval * 63 / (63 + ((63 - nSection) * (MODIFIER_INTERVAL_RATIO - 1)));
+    return a;
 }
 
 // Get stake modifier selection interval (in seconds)
@@ -48,7 +60,9 @@ static int64 GetStakeModifierSelectionInterval()
 {
     int64 nSelectionInterval = 0;
     for (int nSection=0; nSection<64; nSection++)
+    {
         nSelectionInterval += GetStakeModifierSelectionIntervalSection(nSection);
+    }
     return nSelectionInterval;
 }
 
@@ -381,6 +395,8 @@ bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierCheck
 {
     if (fTestNet) return true; // Testnet has no checkpoints
     if (mapStakeModifierCheckpoints.count(nHeight))
+    {
         return nStakeModifierChecksum == mapStakeModifierCheckpoints[nHeight];
+    }
     return true;
 }

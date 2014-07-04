@@ -13,6 +13,13 @@
   <property name="windowTitle">
    <string>Edit Address</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../carpediemcoin.qrc">
+    <normaloff>:/icons/toolbar</normaloff>:/icons/toolbar</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
@@ -34,6 +41,9 @@
        <property name="toolTip">
         <string>The label associated with this address book entry</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
       </widget>
      </item>
      <item row="1" column="0">
@@ -51,12 +61,18 @@
        <property name="toolTip">
         <string>The address associated with this address book entry. This can only be modified for sending addresses.</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -67,7 +83,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../carpediemcoin.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
