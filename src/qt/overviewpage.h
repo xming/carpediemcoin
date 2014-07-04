@@ -2,6 +2,7 @@
 #define OVERVIEWPAGE_H
 
 #include <QWidget>
+#include <QtGui>
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -43,7 +44,12 @@ private:
 
     TxViewDelegate *txdelegate;
     TransactionFilterProxy *filter;
-
+    void paintEvent(QPaintEvent *pe) {
+      QStyleOption o;
+      o.initFrom(this);
+      QPainter p(this);
+      style()->drawPrimitive(QStyle::PE_Widget, &o, &p, this);
+    }
 private slots:
     void updateDisplayUnit();
     void handleTransactionClicked(const QModelIndex &index);

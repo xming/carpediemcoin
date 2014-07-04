@@ -8,8 +8,10 @@
 #include <QPushButton>
 #include <QKeyEvent>
 
+extern bool fWalletUnlockMintOnly;
+
 AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
-    QDialog(parent),
+    QDialog(parent, Qt::FramelessWindowHint | Qt::WindowSystemMenuHint),
     ui(new Ui::AskPassphraseDialog),
     mode(mode),
     model(0),
@@ -28,25 +30,26 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
     switch(mode)
     {
         case Encrypt: // Ask passphrase x2
-            ui->passLabel1->hide();
             ui->passEdit1->hide();
             ui->warningLabel->setText(tr("Enter the new passphrase to the wallet.<br/>Please use a passphrase of <b>10 or more random characters</b>, or <b>eight or more words</b>."));
             setWindowTitle(tr("Encrypt wallet"));
+            ui->mintingCheckBox->hide();
             break;
+        case UnlockMinting: // fallthru
+            ui->mintingCheckBox->setChecked(true);
+            ui->mintingCheckBox->show();
         case Unlock: // Ask passphrase
             ui->warningLabel->setText(tr("This operation needs your wallet passphrase to unlock the wallet."));
-            ui->passLabel2->hide();
             ui->passEdit2->hide();
-            ui->passLabel3->hide();
             ui->passEdit3->hide();
+            ui->mintingCheckBox->show();
             setWindowTitle(tr("Unlock wallet"));
             break;
         case Decrypt:   // Ask passphrase
             ui->warningLabel->setText(tr("This operation needs your wallet passphrase to decrypt the wallet."));
-            ui->passLabel2->hide();
             ui->passEdit2->hide();
-            ui->passLabel3->hide();
             ui->passEdit3->hide();
+            ui->mintingCheckBox->hide();
             setWindowTitle(tr("Decrypt wallet"));
             break;
         case ChangePass: // Ask old passphrase + new passphrase x2
@@ -138,6 +141,7 @@ void AskPassphraseDialog::accept()
             QDialog::reject(); // Cancelled
         }
         } break;
+    case UnlockMinting:
     case Unlock:
         if(!model->setWalletLocked(false, oldpass))
         {
@@ -146,6 +150,7 @@ void AskPassphraseDialog::accept()
         }
         else
         {
+            fWalletUnlockMintOnly = ui->mintingCheckBox->isChecked();
             QDialog::accept(); // Success
         }
         break;
@@ -193,6 +198,7 @@ void AskPassphraseDialog::textChanged()
     case Encrypt: // New passphrase x2
         acceptable = !ui->passEdit2->text().isEmpty() && !ui->passEdit3->text().isEmpty();
         break;
+    case UnlockMinting:
     case Unlock: // Old passphrase x1
     case Decrypt:
         acceptable = !ui->passEdit1->text().isEmpty();

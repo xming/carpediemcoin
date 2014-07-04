@@ -63,7 +63,7 @@ static MapCheckpoints mapCheckpointsTestnet =
         return NULL;
     }
 
-    // ppcoin: synchronized checkpoint (centrally broadcasted)
+    //  synchronized checkpoint (centrally broadcasted)
     uint256 hashSyncCheckpoint = 0;
     uint256 hashPendingCheckpoint = 0;
     CSyncCheckpoint checkpointMessage;
@@ -71,7 +71,7 @@ static MapCheckpoints mapCheckpointsTestnet =
     uint256 hashInvalidCheckpoint = 0;
     CCriticalSection cs_hashSyncCheckpoint;
 
-    // ppcoin: get last synchronized checkpoint
+    //  get last synchronized checkpoint
     CBlockIndex* GetLastSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -82,7 +82,7 @@ static MapCheckpoints mapCheckpointsTestnet =
         return NULL;
     }
 
-    // ppcoin: only descendant of current sync-checkpoint is allowed
+    //  only descendant of current sync-checkpoint is allowed
     bool ValidateSyncCheckpoint(uint256 hashCheckpoint)
     {
         if (!mapBlockIndex.count(hashSyncCheckpoint))
@@ -241,7 +241,7 @@ static MapCheckpoints mapCheckpointsTestnet =
         return false;
     }
 
-    // ppcoin: reset synchronized checkpoint to last hardened checkpoint
+    //  reset synchronized checkpoint to last hardened checkpoint
     bool ResetSyncCheckpoint()
     {
         LOCK(cs_hashSyncCheckpoint);
@@ -363,12 +363,12 @@ static MapCheckpoints mapCheckpointsTestnet =
     }
 }
 
-// ppcoin: sync-checkpoint master key
+//  sync-checkpoint master key
 const std::string CSyncCheckpoint::strMasterPubKey = "0418d918f3264480b4dc3046f5511043045bb5a7119fa3c7a064dc4c063b346487091e2ae1e986e429c0b41393080f22b619cf800ef435f2a3806529013a310c26";
 
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
-// ppcoin: verify signature of sync-checkpoint message
+//  verify signature of sync-checkpoint message
 bool CSyncCheckpoint::CheckSignature()
 {
     CKey key;
@@ -383,7 +383,7 @@ bool CSyncCheckpoint::CheckSignature()
     return true;
 }
 
-// ppcoin: process synchronized checkpoint
+//  process synchronized checkpoint
 bool CSyncCheckpoint::ProcessSyncCheckpoint(CNode* pfrom)
 {
     if (!CheckSignature())

@@ -25,10 +25,12 @@
 #include "notificator.h"
 #include "guiutil.h"
 #include "rpcconsole.h"
+#include "util.h"
 
 #ifdef Q_OS_MAC
 #include "macdockiconhandler.h"
 #endif
+
 
 #include <QApplication>
 #include <QMainWindow>
@@ -57,18 +59,25 @@
 
 #include <iostream>
 
+extern CWallet *pwalletMain;
+extern int64 nLastCoinStakeSearchInterval;
+extern unsigned int nStakeTargetSpacing;
+
 carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     QMainWindow(parent),
     clientModel(0),
     walletModel(0),
     encryptWalletAction(0),
     changePassphraseAction(0),
+    lockWalletToggleAction(0),
     aboutQtAction(0),
     trayIcon(0),
     notificator(0),
     rpcConsole(0)
 {
-    resize(850, 550);
+    setStyleSheet("QToolTip {color:#FFFFD3;background-color:#333333;border-style:none border-style:none; border-radius: 5px;} QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px}");
+    setContentsMargins(0,0,0,0);
+    resize(520, 435);
     setWindowTitle(tr("CarpeDiemCoin") + " - " + tr("Wallet"));
 #ifndef Q_OS_MAC
     qApp->setWindowIcon(QIcon(":icons/carpediemcoin"));
@@ -123,8 +132,7 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     // Status bar notification icons
     QFrame *frameBlocks = new QFrame();
     frameBlocks->setContentsMargins(0,0,0,0);
-    frameBlocks->setMinimumWidth(56);
-    frameBlocks->setMaximumWidth(56);
+    frameBlocks->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
     QHBoxLayout *frameBlocksLayout = new QHBoxLayout(frameBlocks);
     frameBlocksLayout->setContentsMargins(3,0,3,0);
     frameBlocksLayout->setSpacing(3);
@@ -139,6 +147,7 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
+
     // Progress bar and label for blocks download
     progressBarLabel = new QLabel();
     progressBarLabel->setVisible(false);
@@ -149,15 +158,15 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     // Override style sheet for progress bar for styles that have a segmented progress bar,
     // as they make the text unreadable (workaround for issue #1071)
     // See https://qt-project.org/doc/qt-4.8/gallery.html
-    QString curStyle = qApp->style()->metaObject()->className();
-    if(curStyle == "QWindowsStyle" || curStyle == "QWindowsXPStyle")
-    {
-        progressBar->setStyleSheet("QProgressBar { background-color: #e8e8e8; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #FF8000, stop: 1 orange); border-radius: 7px; margin: 0px; }");
-    }
+
+    progressBar->setStyleSheet("QProgressBar { background-color: #838383; border: 1px solid grey; border-radius: 7px; padding: 1px; text-align: center; } QProgressBar::chunk { background: QLinearGradient(x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #FF8000, stop: 1 orange); border-radius: 7px; margin: 0px; }");
+
 
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
     statusBar()->addPermanentWidget(frameBlocks);
+    statusBar()->setObjectName("carpediemStatusBar");
+    statusBar()->setStyleSheet("#carpediemStatusBar { border-top-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-top-width: 2px; border-top-style: inset; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #E5990C, stop:1.0 #E5710A); background-repeat: repeat-x; background-position: bottom center; color: #ffffff; }");
 
     syncIconMovie = new QMovie(":/movies/update_spinner", "mng", this);
 
@@ -198,13 +207,13 @@ void carpediemcoinGUI::createActions()
     overviewAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_1));
     tabGroup->addAction(overviewAction);
 
-    sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send carpediemcoins"), this);
-    sendCoinsAction->setToolTip(tr("Send carpediemcoins to a carpediemcoin address"));
+    sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send Diem"), this);
+    sendCoinsAction->setToolTip(tr("Send DIEM to a CarpeDiemCoind Address"));
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
     tabGroup->addAction(sendCoinsAction);
 
-    receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive carpediemcoins"), this);
+    receiveCoinsAction = new QAction(QIcon(":/icons/receiving_addresses"), tr("&Receive Diem"), this);
     receiveCoinsAction->setToolTip(tr("Show the list of addresses for receiving payments"));
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -237,7 +246,7 @@ void carpediemcoinGUI::createActions()
     quitAction->setToolTip(tr("Quit application"));
     quitAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     quitAction->setMenuRole(QAction::QuitRole);
-    aboutAction = new QAction(QIcon(":/icons/carpediemcoin"), tr("&About carpediemcoins"), this);
+    aboutAction = new QAction(QIcon(":/icons/carpediemcoin"), tr("&About CarpeDiem"), this);
     aboutAction->setToolTip(tr("Show information about carpediemcoin"));
     aboutAction->setMenuRole(QAction::AboutRole);
     aboutQtAction = new QAction(QIcon(":/trolltech/qmessagebox/images/qtlogo-64.png"), tr("About &Qt"), this);
@@ -254,6 +263,7 @@ void carpediemcoinGUI::createActions()
     backupWalletAction->setToolTip(tr("Backup wallet to another location"));
     changePassphraseAction = new QAction(QIcon(":/icons/key"), tr("&Change Passphrase..."), this);
     changePassphraseAction->setToolTip(tr("Change the passphrase used for wallet encryption"));
+    lockWalletToggleAction = new QAction(this);
     signMessageAction = new QAction(QIcon(":/icons/edit"), tr("Sign &message..."), this);
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
 
@@ -270,6 +280,7 @@ void carpediemcoinGUI::createActions()
     connect(encryptWalletAction, SIGNAL(triggered(bool)), this, SLOT(encryptWallet(bool)));
     connect(backupWalletAction, SIGNAL(triggered()), this, SLOT(backupWallet()));
     connect(changePassphraseAction, SIGNAL(triggered()), this, SLOT(changePassphrase()));
+    connect(lockWalletToggleAction, SIGNAL(triggered()), this, SLOT(lockWalletToggle()));
     connect(signMessageAction, SIGNAL(triggered()), this, SLOT(gotoSignMessageTab()));
     connect(verifyMessageAction, SIGNAL(triggered()), this, SLOT(gotoVerifyMessageTab()));
 }
@@ -282,10 +293,13 @@ void carpediemcoinGUI::createMenuBar()
 #else
     // Get the main window's menu bar on other platforms
     appMenuBar = menuBar();
+
 #endif
 
     // Configure the menus
     QMenu *file = appMenuBar->addMenu(tr("&File"));
+    file->setObjectName("file");
+    file->setStyleSheet("#file { background-color: #6B6B6B; color: #FFFFD3; border-color: #E5990C;border-style: inset; border-width: 1px }");
     file->addAction(backupWalletAction);
     file->addAction(exportAction);
     file->addAction(signMessageAction);
@@ -294,31 +308,40 @@ void carpediemcoinGUI::createMenuBar()
     file->addAction(quitAction);
 
     QMenu *settings = appMenuBar->addMenu(tr("&Settings"));
+    settings->setObjectName("settings");
+    settings->setStyleSheet("#settings { background-color: #6B6B6B; color: #FFFFD3; border-color: #E5990C;border-style: inset; border-width: 1px }");
     settings->addAction(encryptWalletAction);
     settings->addAction(changePassphraseAction);
+    settings->addAction(lockWalletToggleAction);
     settings->addSeparator();
     settings->addAction(optionsAction);
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
+    help->setObjectName("help");
+    help->setStyleSheet("#help { background-color: #6B6B6B; color: #FFFFD3; border-color: #E5990C;border-style: inset; border-width: 1px  }");
     help->addAction(openRPCConsoleAction);
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);
+
+
 }
 
 void carpediemcoinGUI::createToolBars()
 {
-    QToolBar *toolbar = addToolBar(tr("Tabs toolbar"));
-    toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    QToolBar *toolbar = addToolBar(tr("toolbar"));
+    toolbar->setIconSize(QSize(20,20));
+    toolbar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolbar->addAction(overviewAction);
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
+    toolbar->addAction(lockWalletToggleAction);
+    toolbar->addAction(exportAction);
+    toolbar->setObjectName("toolbar");
+    toolbar->setStyleSheet("QToolButton { min-height:22px;color:#ffffff;border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; margin:0px;padding:0px;} QToolButton:hover { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #E5990C, stop:1.0 #E5710A); margin:0px; padding:0px; border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; } QToolButton:checked { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:1 #E5990C); margin:0px; padding:0px; border-right-color: qlineargradient(spread:pad, x2:1, y2:0, x1:1, y2:0, stop:0 #E5990C, stop:0.5 #FFFF00, stop:1.0 #FFFF00);border-right-width:2px;border-right-style:outset; border-left-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #FFFF00, stop:0.5 #FFFF00, stop:1.0 #E5990C);border-left-width:2px;border-left-style:inset; } QToolButton:pressed { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:1.0 #FFA600); margin:0px; padding:0px; border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; } QToolButton:selected { color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #4F3504, stop:1.0 #353536); margin:0px;padding:0px;border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; } #toolbar { min-height:22px; color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #E5990C, stop:1.0 #E5710A); margin:0px; padding:0px; border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; } QToolBar::handle { min-height:22px; color: #ffffff; background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #E5990C, stop:1.0 #E5710A); margin:0px; padding:0px; border:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #FFFF00, stop:0.5 #8B8F92, stop:1.0 #8B8F92); border-width: 2px; border-top-style: inset; }");
 
-    QToolBar *toolbar2 = addToolBar(tr("Actions toolbar"));
-    toolbar2->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    toolbar2->addAction(exportAction);
 }
 
 void carpediemcoinGUI::setClientModel(ClientModel *clientModel)
@@ -784,24 +807,34 @@ void carpediemcoinGUI::setEncryptionStatus(int status)
     case WalletModel::Unencrypted:
         labelEncryptionIcon->hide();
         encryptWalletAction->setChecked(false);
-        changePassphraseAction->setEnabled(false);
         encryptWalletAction->setEnabled(true);
+        changePassphraseAction->setEnabled(false);
+        lockWalletToggleAction->setVisible(false);
         break;
     case WalletModel::Unlocked:
         labelEncryptionIcon->show();
         labelEncryptionIcon->setPixmap(QIcon(":/icons/lock_open").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
         labelEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>unlocked</b>"));
         encryptWalletAction->setChecked(true);
-        changePassphraseAction->setEnabled(true);
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
+        changePassphraseAction->setEnabled(true);
+        lockWalletToggleAction->setVisible(true);
+        lockWalletToggleAction->setIcon(QIcon(":/icons/lock_closed"));
+        lockWalletToggleAction->setText(tr("&Lock"));
+        lockWalletToggleAction->setToolTip(tr("Lock wallet"));
+
         break;
     case WalletModel::Locked:
         labelEncryptionIcon->show();
         labelEncryptionIcon->setPixmap(QIcon(":/icons/lock_closed").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
         labelEncryptionIcon->setToolTip(tr("Wallet is <b>encrypted</b> and currently <b>locked</b>"));
         encryptWalletAction->setChecked(true);
-        changePassphraseAction->setEnabled(true);
         encryptWalletAction->setEnabled(false); // TODO: decrypt currently not supported
+        changePassphraseAction->setEnabled(true);
+        lockWalletToggleAction->setVisible(true);
+        lockWalletToggleAction->setIcon(QIcon(":/icons/lock_open"));
+        lockWalletToggleAction->setText(tr("&Unlock"));
+        lockWalletToggleAction->setToolTip(tr("Unlock wallet"));
         break;
     }
 }
@@ -834,6 +867,22 @@ void carpediemcoinGUI::changePassphrase()
     AskPassphraseDialog dlg(AskPassphraseDialog::ChangePass, this);
     dlg.setModel(walletModel);
     dlg.exec();
+}
+
+void carpediemcoinGUI::lockWalletToggle()
+{
+    if(!walletModel)
+        return;
+    // Unlock wallet when requested by wallet model
+    if(walletModel->getEncryptionStatus() == WalletModel::Locked)
+    {
+        AskPassphraseDialog::Mode mode = AskPassphraseDialog::UnlockMinting;
+        AskPassphraseDialog dlg(mode, this);
+        dlg.setModel(walletModel);
+        dlg.exec();
+    }
+    else
+        walletModel->setWalletLocked(true);
 }
 
 void carpediemcoinGUI::unlockWallet()

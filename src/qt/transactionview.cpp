@@ -32,8 +32,10 @@
 TransactionView::TransactionView(QWidget *parent) :
     QWidget(parent), model(0), transactionProxyModel(0),
     transactionView(0)
+
 {
     // Build filter row
+
     setContentsMargins(0,0,0,0);
 
     QHBoxLayout *hlayout = new QHBoxLayout();
@@ -43,7 +45,7 @@ TransactionView::TransactionView(QWidget *parent) :
     hlayout->addSpacing(26);
 #else
     hlayout->setSpacing(0);
-    hlayout->addSpacing(23);
+    hlayout->addSpacing(0);
 #endif
 
     dateWidget = new QComboBox(this);
@@ -59,6 +61,8 @@ TransactionView::TransactionView(QWidget *parent) :
     dateWidget->addItem(tr("Last month"), LastMonth);
     dateWidget->addItem(tr("This year"), ThisYear);
     dateWidget->addItem(tr("Range..."), Range);
+    dateWidget->setObjectName("datewidget");
+    dateWidget->setStyleSheet("#datewidget { background-color: #6B6B6B; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} ");
     hlayout->addWidget(dateWidget);
 
     typeWidget = new QComboBox(this);
@@ -74,10 +78,11 @@ TransactionView::TransactionView(QWidget *parent) :
     typeWidget->addItem(tr("Sent to"), TransactionFilterProxy::TYPE(TransactionRecord::SendToAddress) |
                                   TransactionFilterProxy::TYPE(TransactionRecord::SendToOther));
     typeWidget->addItem(tr("To yourself"), TransactionFilterProxy::TYPE(TransactionRecord::SendToSelf));
-    typeWidget->addItem(tr("POFMined"), TransactionFilterProxy::TYPE(TransactionRecord::StakeMint));
-    typeWidget->addItem(tr("POWMined"), TransactionFilterProxy::TYPE(TransactionRecord::Generated));
+    typeWidget->addItem(tr("Staked"), TransactionFilterProxy::TYPE(TransactionRecord::StakeMint));
+    typeWidget->addItem(tr("Mined"), TransactionFilterProxy::TYPE(TransactionRecord::Generated));
     typeWidget->addItem(tr("Other"), TransactionFilterProxy::TYPE(TransactionRecord::Other));
-
+    typeWidget->setObjectName("typewidget");
+    typeWidget->setStyleSheet("#typewidget { background-color: #6B6B6B; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} ");
     hlayout->addWidget(typeWidget);
 
     addressWidget = new QLineEdit(this);
@@ -85,6 +90,8 @@ TransactionView::TransactionView(QWidget *parent) :
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
     addressWidget->setPlaceholderText(tr("Enter address or label to search"));
 #endif
+    addressWidget->setObjectName("addresswidget");
+    addressWidget->setStyleSheet("#addresswidget { background-color: #6B6B6B; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} ");
     hlayout->addWidget(addressWidget);
 
     amountWidget = new QLineEdit(this);
@@ -98,6 +105,8 @@ TransactionView::TransactionView(QWidget *parent) :
     amountWidget->setFixedWidth(100);
 #endif
     amountWidget->setValidator(new QDoubleValidator(0, 1e20, 8, this));
+    amountWidget->setObjectName("amountwidget");
+    amountWidget->setStyleSheet("#amountwidget { background-color: #6B6B6B; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px }");
     hlayout->addWidget(amountWidget);
 
     QVBoxLayout *vlayout = new QVBoxLayout(this);
@@ -136,6 +145,8 @@ TransactionView::TransactionView(QWidget *parent) :
     contextMenu->addAction(copyAmountAction);
     contextMenu->addAction(editLabelAction);
     contextMenu->addAction(showDetailsAction);
+    contextMenu->setObjectName("contextmenu");
+    contextMenu->setStyleSheet("#contextmenu { background-color: #6B6B6B; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} ");
 
     // Connect actions
     connect(dateWidget, SIGNAL(activated(int)), this, SLOT(chooseDate(int)));
@@ -173,6 +184,8 @@ void TransactionView::setModel(WalletModel *model)
         transactionView->setSortingEnabled(true);
         transactionView->sortByColumn(TransactionTableModel::Status, Qt::DescendingOrder);
         transactionView->verticalHeader()->hide();
+        transactionView->setObjectName("transactionview");
+        transactionView->setStyleSheet("#transactionview { color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB }  ");
 
         transactionView->horizontalHeader()->resizeSection(
                 TransactionTableModel::Status, 23);

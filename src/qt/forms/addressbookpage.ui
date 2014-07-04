@@ -6,21 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
+    <width>787</width>
     <height>380</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Address Book</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QTableView {color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB }</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="labelExplanation">
      <property name="text">
-      <string>These are your carpediemcoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</string>
+      <string>These are your CarpeDiem addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</string>
      </property>
      <property name="textFormat">
       <enum>Qt::PlainText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -34,6 +40,9 @@
      </property>
      <property name="toolTip">
       <string>Double-click to edit address or label</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB</string>
      </property>
      <property name="tabKeyNavigation">
       <bool>false</bool>
@@ -62,6 +71,9 @@
        <property name="toolTip">
         <string>Create a new address</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;New Address</string>
        </property>
@@ -76,6 +88,9 @@
        <property name="toolTip">
         <string>Copy the currently selected address to the system clipboard</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;Copy Address</string>
        </property>
@@ -87,6 +102,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="showQRCode">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>Show &amp;QR Code</string>
        </property>
@@ -100,6 +118,9 @@
       <widget class="QPushButton" name="signMessage">
        <property name="toolTip">
         <string>Sign a message to prove you own a carpediemcoin address</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Sign &amp;Message</string>
@@ -115,6 +136,9 @@
        <property name="toolTip">
         <string>Verify a message to ensure it was signed with a specified carpediemcoin address</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>&amp;Verify Message</string>
        </property>
@@ -128,6 +152,9 @@
       <widget class="QPushButton" name="deleteButton">
        <property name="toolTip">
         <string>Delete the currently selected address from the list</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>&amp;Delete</string>
@@ -158,6 +185,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="standardButtons">
         <set>QDialogButtonBox::Ok</set>

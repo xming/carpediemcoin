@@ -110,6 +110,7 @@ public:
 
     UnlockContext requestUnlock();
 
+
 private:
     CWallet *wallet;
 
