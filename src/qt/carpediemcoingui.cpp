@@ -75,7 +75,7 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     notificator(0),
     rpcConsole(0)
 {
-    setStyleSheet("QToolTip {color:#FFFFD3;background-color:#333333;border-style:none border-style:none; border-radius: 5px;} QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px}");
+    setStyleSheet("QStackedWidget {color:#FFFFD3;background-color:#6B6B6B } QToolTip {color:#FFFFD3;background-color:#333333;border-style:none border-style:none; border-radius: 5px;} QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px}");
     setContentsMargins(0,0,0,0);
     resize(520, 435);
     setWindowTitle(tr("CarpeDiemCoin") + " - " + tr("Wallet"));
@@ -105,6 +105,7 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     overviewPage = new OverviewPage();
 
     transactionsPage = new QWidget(this);
+
     QVBoxLayout *vbox = new QVBoxLayout();
     transactionView = new TransactionView(this);
     vbox->addWidget(transactionView);
@@ -119,6 +120,7 @@ carpediemcoinGUI::carpediemcoinGUI(QWidget *parent):
     signVerifyMessageDialog = new SignVerifyMessageDialog(this);
 
     centralWidget = new QStackedWidget(this);
+
     centralWidget->addWidget(overviewPage);
     centralWidget->addWidget(transactionsPage);
     centralWidget->addWidget(addressBookPage);

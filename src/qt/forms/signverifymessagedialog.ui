@@ -26,7 +26,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabSignMessage">
       <attribute name="title">
@@ -115,7 +115,7 @@
           <string>Enter the message you want to sign here</string>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px </string>
+          <string notr="true">background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px</string>
          </property>
         </widget>
        </item>
@@ -132,7 +132,7 @@
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } </string>
+            <string notr="true">QLineEdit {background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } </string>
            </property>
            <property name="readOnly">
             <bool>true</bool>
@@ -313,7 +313,7 @@
        <item>
         <widget class="QPlainTextEdit" name="messageIn_VM">
          <property name="styleSheet">
-          <string notr="true">background-color: #FBFBFB</string>
+          <string notr="true">background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px</string>
          </property>
         </widget>
        </item>

@@ -35,7 +35,6 @@ TransactionView::TransactionView(QWidget *parent) :
 
 {
     // Build filter row
-
     setContentsMargins(0,0,0,0);
 
     QHBoxLayout *hlayout = new QHBoxLayout();
@@ -118,6 +117,7 @@ TransactionView::TransactionView(QWidget *parent) :
     vlayout->addWidget(createDateRangeWidget());
     vlayout->addWidget(view);
     vlayout->setSpacing(0);
+    view->setStyleSheet("QWidget {background-color: #6B6B6B; alternate-background-color: #6C6C6C; color: #FFFFD3} QHeaderView::section {background-color: #6B6B6B; border-style: inset; border-width: 1px; border-color: #dcb540}");
     int width = view->verticalScrollBar()->sizeHint().width();
     // Cover scroll bar width with spacing
 #ifdef Q_OS_MAC
@@ -184,8 +184,6 @@ void TransactionView::setModel(WalletModel *model)
         transactionView->setSortingEnabled(true);
         transactionView->sortByColumn(TransactionTableModel::Status, Qt::DescendingOrder);
         transactionView->verticalHeader()->hide();
-        transactionView->setObjectName("transactionview");
-        transactionView->setStyleSheet("#transactionview { color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB }  ");
 
         transactionView->horizontalHeader()->resizeSection(
                 TransactionTableModel::Status, 23);
