@@ -14,7 +14,7 @@
    <string>QR Code Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QDialog {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} QTabBar::tab {  background: #6C6C6C; border: 1px outset #C4C4C3; border-bottom-width: 0px; /* same as the pane color */ border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 8px; padding: 3px; color: #FFFFD3 } QCheckBox {background-color: #6C6C6C; color: #FFFFD3}
+   <string notr="true">QDialog {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QTabBar::tab {  background: #6C6C6C; border: 1px outset #C4C4C3; border-bottom-width: 0px; /* same as the pane color */ border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 8px; padding: 3px; color: #FFFFD3 } QCheckBox {background-color: #6C6C6C; color: #FFFFD3}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -58,7 +58,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+      <string notr="true">QObject { background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
      </property>
      <property name="tabChangesFocus">
       <bool>true</bool>
@@ -105,7 +105,7 @@
         <item row="1" column="1">
          <widget class="QLineEdit" name="lnLabel">
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QObject { background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
           </property>
          </widget>
         </item>
@@ -128,7 +128,7 @@
         <item row="2" column="1">
          <widget class="QLineEdit" name="lnMessage">
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QObject { background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
           </property>
          </widget>
         </item>
@@ -166,7 +166,7 @@
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 1px</string>
+           <string notr="true">QObject { background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
           </property>
          </widget>
         </item>

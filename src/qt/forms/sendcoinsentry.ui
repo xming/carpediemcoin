@@ -14,7 +14,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QFrame {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} #payTo {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } #payAmount {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } #addAsLabel  {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } </string>
+   <string notr="true">QFrame {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} #payTo {background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px } </string>
   </property>
   <property name="frameShape">
    <enum>QFrame::StyledPanel</enum>
@@ -55,7 +55,7 @@
    <item row="5" column="1">
     <widget class="carpediemcoinAmountField" name="payAmount">
      <property name="styleSheet">
-      <string notr="true"/>
+      <string notr="true">background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px</string>
      </property>
     </widget>
    </item>
@@ -73,7 +73,7 @@
         <string>Enter a label for this address to add it to your address book</string>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px</string>
        </property>
       </widget>
      </item>

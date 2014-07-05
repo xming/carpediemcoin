@@ -14,7 +14,7 @@
    <string>Address Book</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QTableView {color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB }</string>
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3}  QHeaderView::section {background-color: #6B6B6B; border-style: inset; border-width: 1px; border-color: #dcb540} </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -42,7 +42,7 @@
       <string>Double-click to edit address or label</string>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: grey; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px; background-color: #FBFBFB</string>
+      <string notr="true">QTableView {color:#FFFFD3; background-color: #6B6B6B; alternate-background-color: #6C6C6C; border-style:inset; border-color: #dcb540; border-width: 1px; border-radius: 4px}</string>
      </property>
      <property name="tabKeyNavigation">
       <bool>false</bool>

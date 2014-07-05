@@ -14,7 +14,7 @@
    <string>carpediemcoin - Debug window</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QLabel {color: #FFFFD3} QLineEdit {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px} QDialog {background-color: #6C6C6C; color: #FFFFD3 } QLabel {color: #FFFFD3} QTabWidget {background-color: #E5990C; color: #FFFFD3; }  QTabBar::tab {  background: #6C6C6C; border: 1px outset #E5990C; border-bottom-width: 0px; border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 75px; padding: 3px; color: #FFFFD3 }</string>
+   <string notr="true">QWidget {background-color: #6C6C6C; color: #FFFFD3 } QPushButton { background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px} QPushButton::hover { background-color: #6C6C6C; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 6px; padding: 4px}  QPushButton::pressed {background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #DCB540; border-radius: 6px; padding: 4px} QTabWidget {background-color: #E5990C; color: #FFFFD3; }  QTabBar::tab {  background: #6C6C6C; border: 1px outset #E5990C; border-bottom-width: 0px; border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 75px; padding: 3px; color: #FFFFD3 }QTabBar::tab:selected{  background: #6C6C6C; border: 1px outset #FFFFD3; border-bottom-width: 0px; border-top-left-radius: 4px; border-top-right-radius: 4px; min-width: 75px; padding: 3px; color: #E5990C }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -402,7 +402,7 @@
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+          <string notr="true">background-color: #7B7B7B; color: #FFFFD3;</string>
          </property>
          <property name="readOnly">
           <bool>true</bool>
@@ -430,7 +430,7 @@
          <item>
           <widget class="QLineEdit" name="lineEdit">
            <property name="styleSheet">
-            <string notr="true">background-color: #FBFBFB; color: #E5990C; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
+            <string notr="true">QObject { background-color: #7B7B7B; color: #FFFFD3;; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 0px}</string>
            </property>
           </widget>
          </item>
