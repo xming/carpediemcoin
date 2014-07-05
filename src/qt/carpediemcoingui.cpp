@@ -333,6 +333,7 @@ void carpediemcoinGUI::createToolBars()
 {
     QToolBar *toolbar = addToolBar(tr("toolbar"));
     toolbar->setIconSize(QSize(20,20));
+    toolbar->resize(535,65);
     toolbar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     toolbar->addAction(overviewAction);
     toolbar->addAction(sendCoinsAction);
