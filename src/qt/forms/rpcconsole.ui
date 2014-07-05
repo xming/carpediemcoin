@@ -23,7 +23,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_info">
       <attribute name="title">
@@ -418,7 +418,19 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <property name="spacing">
-          <number>3</number>
+          <number>4</number>
+         </property>
+         <property name="leftMargin">
+          <number>4</number>
+         </property>
+         <property name="topMargin">
+          <number>4</number>
+         </property>
+         <property name="rightMargin">
+          <number>4</number>
+         </property>
+         <property name="bottomMargin">
+          <number>4</number>
          </property>
          <item>
           <widget class="QLabel" name="label">
@@ -445,6 +457,9 @@
            <property name="toolTip">
             <string>Clear console</string>
            </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
            <property name="styleSheet">
             <string notr="true">background-color: #787878; color: #FFFFD3; border-style:outset; border-color: #dcb540; border-width: 1px; border-radius: 2px; padding: 2px</string>
            </property>
@@ -459,6 +474,9 @@
             <string notr="true">Ctrl+L</string>
            </property>
            <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
             <bool>false</bool>
            </property>
           </widget>
